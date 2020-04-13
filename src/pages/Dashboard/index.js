@@ -13,10 +13,8 @@ const Dashboard = () => {
       .then((data) => {
         if (data.error === "You must be logged in to access this URL") {
           history.push('/');
-          // window.location.href = '/';
         } else if (data.error === "You must be authenticated with Spotify to access this URL") {
-          history.push('/profile');
-          // window.location.href = '/linkspotify';
+          history.push('/linkspotify');
         } 
         return userInfoHandler(data);
       })
@@ -81,6 +79,8 @@ const Dashboard = () => {
 
   const currentlyListeningHandler = (props) => {
     // FIXME: array with only 1 item
+    // console.log('Currently listening:')
+    // console.log(props);
     if (props === '') {
       // User is not listening to anything
     } else {
@@ -88,30 +88,55 @@ const Dashboard = () => {
       const array = [];
       array.push({
         id: 1,
-        value: props.artists[0].name + ' - ' + props.name
+        img: props.album.images[2].url,
+        artist: props.artists[0].name,
+        name: props.name,
+        type: props.type,
+        uri: props.id
       });
-      setCurrentlyListening(array.map((array) => 
-        <li key={array.id}>{array.value}</li>
-      ));
+      setCurrentlyListening(array.map((array) => {
+        const url = '/rate/track/'+array.uri;
+        return (<li key={array.id}>
+          <a href = {url}>
+            <img src={array.img} alt={array.artist} />
+            {array.artist} - {array.name}
+          </a>
+        </li>
+        );
+      }
+    ));
     }
   };
 
   const recentlyPlayedListHandler = (props) => {
-    // FIXME: - make list items link to their content so it's ratable
-    //        - add at what time the track was played
+    // console.log('Recently Played')
+    // console.log(props);
     const array = [];
     for (let i = 0; i < props.length; i++) {
       array.push({
         id: i,
-        value: props[i].track.artists[0].name + ' - ' + props[i].track.name
+        img: props[i].track.album.images[2].url,
+        artist: props[i].track.artists[0].name,
+        name: props[i].track.name,
+        type: props[i].track.type,
+        uri: props[i].track.id
       });
     }
-    setRecentlyPlayedList(array.map((array) =>
-      <li key={array.id}>{array.value}</li>
+    setRecentlyPlayedList(array.map((array) => {
+      const url = '/rate/track/'+array.uri;
+      return (
+        <li key={array.id}>
+          <a href = {url}>
+            <img src={array.img} alt={array.artist} />
+            {array.artist} - {array.name}
+          </a>
+        </li>
+      );
+      }
     ));
   };
 
-  async function fetchTopTracks() {
+  const fetchTopTracks = () => {
     const url = 'http://127.0.0.1:8000/spotify/user/top_tracks'+topTracksTimeLimit;
     // console.log(url);
     fetch(url, {
@@ -128,6 +153,7 @@ const Dashboard = () => {
       return console.error(err);
     })
   };
+
   const topTracksTimeLimitDef = {
     short: '?timespan=short_term&limit=7',
     medium: '?timespan=medium_term&limit=7',
@@ -143,11 +169,9 @@ const Dashboard = () => {
       topTracksTimeLimit = topTracksTimeLimitDef.short;
       setTopTracksStatus('the past 4 weeks:');
     } else if (props === '6 months'){
-      //setTopTracksTimeLimit(topTracksTimeLimitDef.medium);
       topTracksTimeLimit = topTracksTimeLimitDef.medium;
       setTopTracksStatus('the past 6 months:');
     } else if (props === 'all time'){
-      //setTopTracksTimeLimit(topTracksTimeLimitDef.long);
       topTracksTimeLimit = topTracksTimeLimitDef.long;
       setTopTracksStatus('all time:');
     }
@@ -155,15 +179,30 @@ const Dashboard = () => {
   };
   
   const topTracksHandler = (props) => {
+    // console.log('Top tracks:')
+    // console.log(props);
     const array = [];
     for (let i = 0; i < props.length; i++) {
       array.push({
         id: i,
-        value: props[i].artists[0].name + ' - ' + props[i].name
+        img: props[i].album.images[2].url,
+        artist: props[i].artists[0].name,
+        name: props[i].name,
+        type: props[i].type,
+        uri: props[i].id
       });
     }
-    setTopTracks(array.map((array) =>
-      <li key={array.id}>{array.value}</li>
+    setTopTracks(array.map((array) =>{
+      const url = '/rate/track/'+array.uri;
+      return (
+        <li key={array.id}>
+          <a href = {url}>
+            <img src={array.img} alt={array.artist} />
+            {array.artist} - {array.name}
+          </a>
+        </li>
+      );
+    }
     ));
   };
 
@@ -171,6 +210,8 @@ const Dashboard = () => {
   return (
       <div>
       <h1>{userDisplayName} Dashboard</h1>
+      <a href ="/friends">Friends</a> <br/>
+      <a href ="/ratings">Ratings</a>
       <div>
         {isListening && 
           <div>
