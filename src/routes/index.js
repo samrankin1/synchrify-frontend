@@ -13,6 +13,8 @@ import Friends from "../pages/Friends";
 import RateTrack from "../pages/RateTrack";
 import Ratings from "../pages/Ratings";
 
+import EditRate from "../pages/EditRate";
+
 import Dashboard from "../pages/Dashboard";
 import Profile from "../pages/Profile";
 
@@ -32,6 +34,8 @@ export default function Routes() {
       {/*FIXME: make this redirect to Dashboard instead of loading the
                 Dashboard on rate */}
       <Route path="/rate" component={Dashboard}/>
+
+      <Route path="/edit/track/:content_id" component={EditRate} />
 
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />

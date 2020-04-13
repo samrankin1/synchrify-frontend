@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import history from '../../services/history';
 
 const Ratings = () => {
     const [ratingsList, setRatingsList] = useState([]);
@@ -16,7 +17,25 @@ const Ratings = () => {
         .catch((err) => {
             return console.error(err);
         })
+        // eslint-disable-next-line
     }, []);
+
+    const getContentInfoHandler = (props) => {
+        fetch('http://127.0.0.1:8000/content/'+props, {
+            method: 'GET',
+            credentials: 'include',
+        })
+        .then((resp) => {
+            return resp.json();
+        })
+        .then((data) => {
+            console.log(data.uri);
+            history.push('/edit/track/'+data.uri);
+        })
+        .catch((err) => {
+            return console.error(err);
+        })
+    }
 
     const ratingsListHandler = (props) => {
         console.log(props.ratings[0]);
@@ -36,7 +55,8 @@ const Ratings = () => {
             setRatingsList(array.map((array) => {
                 return (
                     <li key={array.id}>
-                        Rating: {array.rating} <i>View</i>
+                        {/* click to view / edit */}
+                        <button onClick={getContentInfoHandler.bind(getContentInfoHandler, array.content_id)}>Rating: {array.rating}</button>
                     </li>
                 );
             }))
@@ -47,6 +67,7 @@ const Ratings = () => {
     return (
         <div>
             <h1>Ratings</h1>
+            <a href='/dashboard'>Dashboard</a>
             <div>
                 <h2>Track ratings:</h2>
                 {ratingsList}
