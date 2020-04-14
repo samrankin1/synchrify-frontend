@@ -51,9 +51,9 @@ const Friends = () => {
             }
             console.log(array);
             setFriendsList(array.map((array) => {
-                // add url here 
+                const url = '/profile/'+array.value;
                 return (
-                    <li key = {array.id}>user_id: {array.value}</li>
+                    <li key = {array.id}>user_id: <a href={url}>{array.value}</a></li>
                     );
             }));
         }

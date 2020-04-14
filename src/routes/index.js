@@ -16,7 +16,9 @@ import Ratings from "../pages/Ratings";
 import EditRate from "../pages/EditRate";
 
 import Dashboard from "../pages/Dashboard";
+
 import Profile from "../pages/Profile";
+import ViewRate from "../pages/ViewRate";
 
 export default function Routes() {
   return (
@@ -31,17 +33,16 @@ export default function Routes() {
       
       <Route path="/rate/track/:content_id" component={RateTrack}/>
       <Route path="/ratings" component={Ratings} />
-      {/*FIXME: make this redirect to Dashboard instead of loading the
-                Dashboard on rate */}
-      <Route path="/rate" component={Dashboard}/>
 
       <Route path="/edit/track/:content_id" component={EditRate} />
 
-      <Route path="/dashboard" component={Dashboard} isPrivate />
-      <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/dashboard" component={Dashboard} />
+
+      <Route path="/profile/:user_id" component={Profile} />
+      <Route path="/view/:user_id/:content_id/:id" component={ViewRate} />
 
       {/* 404 redirects to SignIn */}
-      <Route component={SignIn} />
+      <Route component={Dashboard} />
     </Switch>
   );
 }
