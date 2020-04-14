@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 const Dashboard = () => {
   const { user_id } = useParams();
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/ratings/list/'+user_id, {
+    fetch('https://synchapi.samrank.in/ratings/list/'+user_id, {
         method: 'GET',
         credentials: 'include',
     })

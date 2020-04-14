@@ -3,7 +3,7 @@ import "../../index.css";
 
 const SignOut = () => {
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/logout', {
+        fetch('https://synchapi.samrank.in/logout', {
                 method: 'GET',
                 credentials: 'include',
             })

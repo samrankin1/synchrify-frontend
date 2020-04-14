@@ -69,7 +69,7 @@ class SignUp extends Component {
     console.log("Submitting");
     console.log(data);
     console.log(JSON.stringify(data));
-    fetch('http://127.0.0.1:8000/register/', {
+    fetch('https://synchapi.samrank.in/register/', {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(data),

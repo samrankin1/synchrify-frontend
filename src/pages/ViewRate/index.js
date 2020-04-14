@@ -6,7 +6,7 @@ const ViewRate = () => {
     const { content_id } = useParams();
     const { id } = useParams();
     useEffect(() => {
-            fetch('http://127.0.0.1:8000/spotify/user/fetch_tracks?tracks='+content_id, {
+            fetch('https://synchapi.samrank.in/spotify/user/fetch_tracks?tracks='+content_id, {
                 method: 'GET',
                 credentials: 'include',
             })
@@ -20,7 +20,7 @@ const ViewRate = () => {
                 return console.error(err);
             })
 
-            fetch('http://127.0.0.1:8000/content/'+id+'/rating/'+user_id, {
+            fetch('https://synchapi.samrank.in/content/'+id+'/rating/'+user_id, {
                 method: 'GET',
                 credentials: 'include',
               })

@@ -4,7 +4,7 @@ import history from '../../services/history';
 const Ratings = () => {
     const [ratingsList, setRatingsList] = useState([]);
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/ratings/list', {
+        fetch('https://synchapi.samrank.in/ratings/list', {
             method: 'GET',
             credentials: 'include',
         })
@@ -21,7 +21,7 @@ const Ratings = () => {
     }, []);
 
     const getContentInfoHandler = (props) => {
-        fetch('http://127.0.0.1:8000/content/'+props, {
+        fetch('https://synchapi.samrank.in/content/'+props, {
             method: 'GET',
             credentials: 'include',
         })

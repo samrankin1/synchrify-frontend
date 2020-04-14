@@ -4,7 +4,7 @@ import "../../index.css";
 
 const Dashboard = () => {
   useEffect(() => {
-      fetch('http://127.0.0.1:8000/spotify/user/profile', {
+      fetch('https://synchapi.samrank.in/spotify/user/profile', {
         method: 'GET',
         credentials: 'include',
       })
@@ -23,7 +23,7 @@ const Dashboard = () => {
         return console.error(err);
       })
 
-      fetch('http://127.0.0.1:8000/spotify/user/playing_track', {
+      fetch('https://synchapi.samrank.in/spotify/user/playing_track', {
         method: 'GET',
         credentials: 'include',
       })
@@ -38,7 +38,7 @@ const Dashboard = () => {
         return console.error(err);
       })
 
-      fetch('http://127.0.0.1:8000/spotify/user/recent_tracks', {
+      fetch('https://synchapi.samrank.in/spotify/user/recent_tracks', {
         method: 'GET',
         credentials: 'include',
       })
@@ -52,7 +52,7 @@ const Dashboard = () => {
         return console.error(err);
       })
 
-      fetch('http://127.0.0.1:8000/spotify/user/top_tracks?timespan=short_term&limit=7', {
+      fetch('https://synchapi.samrank.in/spotify/user/top_tracks?timespan=short_term&limit=7', {
         method: 'GET',
         credentials: 'include'
       })
@@ -142,7 +142,7 @@ const Dashboard = () => {
   };
 
   const fetchTopTracks = () => {
-    const url = 'http://127.0.0.1:8000/spotify/user/top_tracks'+topTracksTimeLimit;
+    const url = 'https://synchapi.samrank.in/spotify/user/top_tracks'+topTracksTimeLimit;
     // console.log(url);
     fetch(url, {
       method: 'GET',

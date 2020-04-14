@@ -13,7 +13,7 @@ const LinkSpotify = () => {
       <div class ="main-container">
         <h1>Welcome!</h1>
         To access the Dashboard,<br/>
-        <a href='http://127.0.0.1:8000/spotify/auth'>Link to Spotify</a>
+        <a href='https://synchapi.samrank.in/spotify/auth'>Link to Spotify</a>
       </div>
       </div>
     )

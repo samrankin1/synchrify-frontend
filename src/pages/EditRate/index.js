@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 const EditRate = () => {
     const { content_id } = useParams();
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/content/track/'+content_id, {
+        fetch('https://synchapi.samrank.in/content/track/'+content_id, {
             method: 'GET',
             credentials: 'include',
           })
@@ -21,7 +21,7 @@ const EditRate = () => {
             return console.error(err);
           })
 
-        fetch('http://127.0.0.1:8000/spotify/user/fetch_tracks?tracks='+content_id, {
+        fetch('https://synchapi.samrank.in/spotify/user/fetch_tracks?tracks='+content_id, {
             method: 'GET',
             credentials: 'include',
           })
@@ -55,7 +55,7 @@ const EditRate = () => {
     };
 
     const fetchContentRating = (props) => {
-        const url = 'http://127.0.0.1:8000/content/'+props+'/rating';
+        const url = 'https://synchapi.samrank.in/content/'+props+'/rating';
         fetch(url, {
             method: 'GET',
             credentials: 'include',
@@ -75,7 +75,7 @@ const EditRate = () => {
     const [rateValue, setRateValue] = useState('');
     const submitHandler = (event) => {
         event.preventDefault();
-        const url = 'http://127.0.0.1:8000/content/'+dbContendId+'/rating/set/'+rateValue;
+        const url = 'https://synchapi.samrank.in/content/'+dbContendId+'/rating/set/'+rateValue;
         fetch(url, {
             method: 'GET',
             credentials: 'include',
@@ -93,7 +93,7 @@ const EditRate = () => {
     }
 
     const deleteHandler = () => {
-        const url = 'http://127.0.0.1:8000/content/'+dbContendId+'/rating/reset';
+        const url = 'https://synchapi.samrank.in/content/'+dbContendId+'/rating/reset';
         fetch(url, {
                 method: 'GET',
                 credentials: 'include',

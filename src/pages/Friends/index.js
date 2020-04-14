@@ -4,7 +4,7 @@ import "../../index.css";
 
 const Friends = () => {
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/friends/list', {
+        fetch('https://synchapi.samrank.in/friends/list', {
             method: 'GET',
             credentials: 'include',
           })
@@ -17,7 +17,7 @@ const Friends = () => {
           .catch((err) => {
             return console.error(err);
           })
-        fetch('http://127.0.0.1:8000/friends/pending', {
+        fetch('https://synchapi.samrank.in/friends/pending', {
             method: 'GET',
             credentials: 'include',
           })
@@ -82,7 +82,7 @@ const Friends = () => {
 
     const handleAddFriend = (event) => {
         event.preventDefault();
-        fetch('http://127.0.0.1:8000/friends/add/'+friendName, {
+        fetch('https://synchapi.samrank.in/friends/add/'+friendName, {
             method: 'GET',
             credentials: 'include',
           })
