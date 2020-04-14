@@ -12,16 +12,13 @@ const Dashboard = () => {
         return resp.json();
     })
     .then((data) => {
-        // const k = data.ratings.length - 1;
-        // for (let i = k; i >= 0; i--) {
-        //     fetchImagesHandler(data.ratings[i]);
-        // }
         return ratingsListHandler(data);
     })
     .catch((err) => {
         return console.error(err);
     })
-  }, []);
+    // eslint-disable-next-line
+  }, [user_id]);
 
   const [ratingsList, setRatingsList] = useState([]);
   const [userIsFriend, setUserIsFriend] = useState(true);

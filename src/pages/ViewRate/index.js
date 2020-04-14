@@ -55,7 +55,7 @@ const ViewRate = () => {
     return (
         <div>
         <h1>User {user_id}'s Rating</h1>
-        <a href='/ratings'>Back</a>
+        <a href='/friends'>Back</a>
         <div>
             {/* <h2>You are currently viewing:</h2> <br/> */}
             <img src={trackInfo.img} alt={trackInfo.album}></img> <br/>
