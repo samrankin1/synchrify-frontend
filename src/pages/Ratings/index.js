@@ -65,7 +65,7 @@ const Ratings = () => {
                         {/* click to view / edit */}
                         {/* This doesn't work */}
                         {/* <img src={array.img} alt={array.name} /> */}
-                        <a href={url}>{array.rating}/10 - {array.name}</a>
+                        <a href={url}> &nbsp; {array.rating}/10 &nbsp;  {array.name}</a>
                     </li>
                 );
             }))
@@ -74,11 +74,21 @@ const Ratings = () => {
 
     return (
         <div>
+          <div className ="header">
+          <a href='/dashboard' className = "logo">Synchrify</a>
+          <div className = "menu">
+          <a href ="/friends">Friends</a>
+          <a href ="/ratings">Ratings</a>
+            <a href='/logout'>Logout</a>
+          </div>
+          </div>
+
+          <div className = "main-container">
             <h1>Ratings</h1>
-            <a href='/dashboard'>Dashboard</a>
             <div>
                 <h2>Track ratings:</h2>
-                {ratingsList}
+                <div className = 'ratings'>{ratingsList}</div>
+            </div>
             </div>
         </div>
     );

@@ -1,8 +1,9 @@
 import React, { useState , useEffect }from "react";
 import history from '../../services/history';
+import "../../index.css";
 
 const Dashboard = () => {
-  useEffect(() => { 
+  useEffect(() => {
       fetch('http://127.0.0.1:8000/spotify/user/profile', {
         method: 'GET',
         credentials: 'include',
@@ -15,7 +16,7 @@ const Dashboard = () => {
           history.push('/');
         } else if (data.error === "You must be authenticated with Spotify to access this URL") {
           history.push('/linkspotify');
-        } 
+        }
         return userInfoHandler(data);
       })
       .catch((err) => {
@@ -67,7 +68,7 @@ const Dashboard = () => {
   }, [])
 
   const [userDisplayName, setUserDisplayName] = useState('');
-  
+
   const [isListening, setIsListening] = useState(false);
   const [currentlyListening, setCurrentlyListening] = useState([]);
 
@@ -88,7 +89,7 @@ const Dashboard = () => {
       const array = [];
       array.push({
         id: 1,
-        img: props.album.images[2].url,
+        img: props.album.images[1].url,
         artist: props.artists[0].name,
         name: props.name,
         type: props.type,
@@ -97,10 +98,12 @@ const Dashboard = () => {
       setCurrentlyListening(array.map((array) => {
         const url = '/rate/track/'+array.uri;
         return (<li key={array.id}>
-          <a href = {url}>
-            <img src={array.img} alt={array.artist} />
-            {array.artist} - {array.name}
-          </a>
+          <div className="polaroid">
+            <a href = {url}>
+              <img src={array.img} alt={array.artist} />
+              <div className="container">{array.artist} - {array.name}</div>
+            </a>
+            </div>
         </li>
         );
       }
@@ -115,7 +118,7 @@ const Dashboard = () => {
     for (let i = 0; i < props.length; i++) {
       array.push({
         id: i,
-        img: props[i].track.album.images[2].url,
+        img: props[i].track.album.images[1].url,
         artist: props[i].track.artists[0].name,
         name: props[i].track.name,
         type: props[i].track.type,
@@ -126,10 +129,12 @@ const Dashboard = () => {
       const url = '/rate/track/'+array.uri;
       return (
         <li key={array.id}>
+        <div className="polaroid">
           <a href = {url}>
             <img src={array.img} alt={array.artist} />
-            {array.artist} - {array.name}
+            <div className="container">{array.artist} - {array.name}</div>
           </a>
+          </div>
         </li>
       );
       }
@@ -177,7 +182,7 @@ const Dashboard = () => {
     }
     fetchTopTracks(topTracksTimeLimit);
   };
-  
+
   const topTracksHandler = (props) => {
     // console.log('Top tracks:')
     // console.log(props);
@@ -185,7 +190,7 @@ const Dashboard = () => {
     for (let i = 0; i < props.length; i++) {
       array.push({
         id: i,
-        img: props[i].album.images[2].url,
+        img: props[i].album.images[1].url,
         artist: props[i].artists[0].name,
         name: props[i].name,
         type: props[i].type,
@@ -196,10 +201,12 @@ const Dashboard = () => {
       const url = '/rate/track/'+array.uri;
       return (
         <li key={array.id}>
+        <div className="polaroid">
           <a href = {url}>
             <img src={array.img} alt={array.artist} />
-            {array.artist} - {array.name}
+            <div className="container">{array.artist} - {array.name}</div>
           </a>
+          </div>
         </li>
       );
     }
@@ -209,11 +216,22 @@ const Dashboard = () => {
   // TODO: Stop this from rendering if user is not logged in or linked to Spotify
   return (
       <div>
-      <h1>{userDisplayName} Dashboard</h1>
-      <a href ="/friends">Friends</a> <br/>
+      <div className ="header">
+      <a href='/dashboard' className = "logo">Synchrify</a>
+      <div className = "menu">
+      <a href ="/friends">Friends</a>
       <a href ="/ratings">Ratings</a>
-      <div>
-        {isListening && 
+        <a href='/logout'>Logout</a>
+      </div>
+      </div>
+
+      <div className="title">
+      <h1>{userDisplayName} Dashboard</h1>
+      </div>
+
+      <div className="main">
+      <div div className = "playing">
+        {isListening &&
           <div>
           <h2>Currently Playing</h2>
           <ul>
@@ -223,14 +241,7 @@ const Dashboard = () => {
         }
       </div>
 
-      <div>
-        <h2>Recently Played</h2>
-        <ul>
-          {recentlyPlayedList}
-        </ul>
-      </div>
-
-      <div>
+      <div className = "topLists">
         <h2>Top Tracks</h2>
         <button onClick={switchTimeFrame.bind(switchTimeFrame, '4 weeks')}>
           4 Weeks
@@ -248,9 +259,13 @@ const Dashboard = () => {
         </ul>
       </div>
 
-      <div>
-        <a href='/logout'>Logout</a>
+      <div className = "recent">
+        <h2>Recently Played</h2>
+        <ul>
+          {recentlyPlayedList}
+        </ul>
       </div>
+    </div>
     </div>
     )
 };

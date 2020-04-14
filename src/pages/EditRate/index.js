@@ -47,7 +47,7 @@ const EditRate = () => {
     const trackInfoHandler = (props) => {
         console.log(props);
         setTrackInfo({
-            img: props.tracks[0].album.images[1].url,
+            img: props.tracks[0].album.images[0].url,
             name: props.tracks[0].name,
             artist: props.tracks[0].artists[0].name,
             album: props.tracks[0].album.name
@@ -115,14 +115,25 @@ const EditRate = () => {
     }
     return (
         <div>
+          <div className ="header">
+          <a href='/dashboard' className = "logo">Synchrify</a>
+          <div className = "menu">
+          <a href ="/friends">Friends</a>
+          <a href ="/ratings">Ratings</a>
+            <a href='/logout'>Logout</a>
+          </div>
+          </div>
+
+          <div class = "track-container primary">
             <h1>View Rating</h1>
-            <a href='/ratings'>Back</a>
-            <div>
                 <h2>You are currently viewing:</h2> <br/>
+                <div className="card">
                 <img src={trackInfo.img} alt={trackInfo.album}></img> <br/>
+                <div className="card-text">
                 <b>Track Name:</b> {trackInfo.name} <br/>
                 <b>By: </b>{trackInfo.artist} <br/>
                 <b>From the Album:</b> {trackInfo.album}
+                </div>
             </div>
             <div>
                 <form onSubmit={submitHandler}>
@@ -149,10 +160,11 @@ const EditRate = () => {
                         </select>
                     </label>
                     <br/><br/>
-                    <input type="submit" value="Change Rating" />
+                    <input type="submit" value="Change Rating" /><br/>
                     <button onClick={deleteHandler}>Delete Rating</button>
                     <button onClick={cancelHandler}>Cancel</button>
                 </form>
+                </div>
             </div>
         </div>
     );

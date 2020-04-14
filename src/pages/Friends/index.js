@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import history from '../../services/history';
+import "../../index.css";
 
 const Friends = () => {
     useEffect(() => {
@@ -41,7 +42,7 @@ const Friends = () => {
         const array = [];
         if (props.friends.length === 0) {
             setFriendsList('No friends yet.');
-        } else { 
+        } else {
             // map this
             for (let i = 0; i < props.friends.length; i++) {
                 array.push({
@@ -53,7 +54,7 @@ const Friends = () => {
             setFriendsList(array.map((array) => {
                 const url = '/profile/'+array.value;
                 return (
-                    <li key = {array.id}>user_id: <a href={url}>{array.value}</a></li>
+                          <li key = {array.id}>user_id: <a href={url}>{array.value}</a></li>
                     );
             }));
         }
@@ -71,7 +72,7 @@ const Friends = () => {
             }
             console.log(array);
             setFriendsPendingList(array.map((array) => {
-                // add url here 
+                // add url here
                 return (
                     <li key = {array.id}>user_id: {array.value}</li>
                     );
@@ -97,30 +98,38 @@ const Friends = () => {
     };
     return (
         <div>
+        <div className ="header">
+        <a href='/dashboard' className = "logo">Synchrify</a>
+        <div className = "menu">
+        <a href ="/friends">Friends</a>
+        <a href ="/ratings">Ratings</a>
+          <a href='/logout'>Logout</a>
+        </div>
+        </div>
+
+        <div class ="main-container">
             <h1>Friends</h1>
-            <div> 
-                <a href="/dashboard">Dashboard</a>
             <div>
                 <br/>
-                {friendsList} 
+                {friendsList}
                 <br/>
             </div>
             <form onSubmit={handleAddFriend}>
                 <label>
                     Add a friend:
-                    <input 
+                    <input
                         type="text"
                         value={friendName}
-                        onChange={e => setFriendName(e.target.value)} 
+                        onChange={e => setFriendName(e.target.value)}
                     />
                 </label>
                     <input type="submit" value="+" />
                 </form>
             </div>
-            {friendsPending && 
+            {friendsPending &&
             <div>
                 <br/>
-                Friends pending: 
+                Friends pending:
                 <br/>
                 {friendsPendingList}
             </div>}

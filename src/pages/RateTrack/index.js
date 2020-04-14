@@ -45,7 +45,7 @@ const RateTrack = () => {
     const trackInfoHandler = (props) => {
         console.log(props);
         setTrackInfo({
-            img: props.tracks[0].album.images[1].url,
+            img: props.tracks[0].album.images[0].url,
             name: props.tracks[0].name,
             artist: props.tracks[0].artists[0].name,
             album: props.tracks[0].album.name
@@ -73,14 +73,25 @@ const RateTrack = () => {
     }
     return (
         <div>
+        <div className ="header">
+        <a href='/dashboard' className = "logo">Synchrify</a>
+        <div className = "menu">
+        <a href ="/friends">Friends</a>
+        <a href ="/ratings">Ratings</a>
+          <a href='/logout'>Logout</a>
+        </div>
+        </div>
+
+        <div class = "track-container primary">
             <h1>Rate Track</h1>
-            <a href='/dashboard'>Back</a>
-            <div>
                 <h2>You are currently rating:</h2> <br/>
+                <div className="card">
                 <img src={trackInfo.img} alt={trackInfo.album}></img> <br/>
+                <div className="card-text">
                 <b>Track Name:</b> {trackInfo.name} <br/>
                 <b>By: </b>{trackInfo.artist} <br/>
                 <b>From the Album:</b> {trackInfo.album}
+                </div>
             </div>
             <div>
                 <form onSubmit={submitHandler}>
@@ -106,9 +117,11 @@ const RateTrack = () => {
                         </select>
                     </label>
                     <br/><br/>
-                    <input type="submit" value="Submit Rating" />
+                    <input type="submit" value="Submit Rating"/>
                 </form>
+                <a href='/dashboard'>Back</a>
             </div>
+        </div>
         </div>
     );
 };

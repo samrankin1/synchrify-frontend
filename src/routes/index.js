@@ -30,7 +30,7 @@ export default function Routes() {
       <Route path="/linkspotify" component={LinkSpotify} />
 
       <Route path="/friends" component={Friends} />
-      
+
       <Route path="/rate/track/:content_id" component={RateTrack}/>
       <Route path="/ratings" component={Ratings} />
 

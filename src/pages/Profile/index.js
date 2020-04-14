@@ -53,9 +53,19 @@ const Dashboard = () => {
   };
   return (
     <div>
+    <div className ="header">
+    <a href='/dashboard' className = "logo">Synchrify</a>
+    <div className = "menu">
+    <a href ="/friends">Friends</a>
+    <a href ="/ratings">Ratings</a>
+      <a href='/logout'>Logout</a>
+    </div>
+    </div>
+
+    <div className="title">
       <h1>User {user_id}'s Profile</h1>
-      <a href='/dashboard'>Dashboard</a>
-      <a href='/friends'>Friends</a>
+    </div>
+    <div className="main">
             {userIsFriend && <div>
                 <h2>Track ratings:</h2>
                 {ratingsList}
@@ -63,6 +73,7 @@ const Dashboard = () => {
             <div>
               {notFriendsMessage}
             </div>
+    </div>
     </div>
   )
 };

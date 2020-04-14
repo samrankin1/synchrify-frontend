@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import history from '../../services/history';
 import md5 from '../md5';
+import "../../index.css";
 
 class SignIn extends Component {
   constructor(props) {
@@ -14,29 +15,44 @@ class SignIn extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
+    <div>
+    <div className ="header">
+      <a href='/dashboard' className = "logo">Synchrify</a>
+      </div>
+
+      <div class = "main-container primary">
         <h1>Log In</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email</label>
+        <form onSubmit={this.handleSubmit} class = 'form-signin'>
+          <label htmlFor="email" class = "black">Email</label>
           <input
             name="email"
             type="text"
             placeholder="Enter your email"
             value={email}
             onChange={this.handleChange}
+            class = 'form-control'
           />
-          <label htmlFor="email">Password</label>
+          <label htmlFor="email" class = "black">Password</label>
           <input
             name="password"
             type="password"
             placeholder="Enter your password"
             value={password}
             onChange={this.handleChange}
+            class = 'form-control'
           />
-          <button type="submit">Login</button>
+          <button type="submit" class = 'btn'>Login</button>
+
+          <div class = 'footnote'>
+          <a href='/register' class = 'veryBottomBTN'>Register</a>
+          </div>
         </form>
-        <a href='/register'>Register</a>
       </div>
+
+      <footer>
+		    <p>&#169;2020 Group 1</p>
+	    </footer>
+</div>
     );
   }
 
