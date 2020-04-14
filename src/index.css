@@ -381,19 +381,30 @@ footer {
 
 /* View Ratings*/
 
+.view-container {
+	flex: 1 0 auto;
+	text-align: center;
+	margin: 5% auto 5%;
+	width: 80%;
+	padding: 25px;
+	border-radius: 30px;
+  font-size: 1.5em;
+}
+
 .ratings {
-  background-color: lightgrey;
+  background-color: whitesmoke;
   width: 90%;
-  padding: 12px;
+  padding: 8px;
   margin: auto;
   box-sizing: border-box;
   border-radius: 10px;
   font-size: 1em;
 }
 
-.ratings a {
-    text-decoration: none;
+.ratings button:hover {
+  background-color: lightgrey;
 }
+
 
 /* Add media queries for responsiveness r */
 @media screen and (max-width: 1600px) {

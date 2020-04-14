@@ -107,7 +107,7 @@ const Friends = () => {
         </div>
         </div>
 
-        <div class ="main-container">
+        <div class ="view-container">
             <h1>Friends</h1>
             <div>
                 <br/>
